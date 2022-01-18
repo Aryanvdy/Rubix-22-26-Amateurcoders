@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu:wght@300;400;700&display=swap');
+#features{
+    background-color: #f5f5f5;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+.b-head{
+    font-family: 'Montserrat';
+    font-size: 3.5rem;
+    line-height: 1.5;
+    font-weight: 900;
+}
+.feature-box{
+
+    padding: 5%;
+    padding-bottom: 1%;
+}
+
+.f-ico{
+    padding-bottom: 5%;
+    color: #00D9A5;
+}
+
+.f-ico:hover{
+    color: #0e9777;
+
+}
+#blog{
+    padding: 40px;
+
+}
+
+.blog-column{
+    padding: 3% 2%;
+}

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/maicons.css">
+    <link rel="stylesheet" href="css/lang.css">
     <!-- Font Awsome -->
     <script src="https://kit.fontawesome.com/47d85d73c6.js" crossorigin="anonymous"></script>
     <!-- Icon -->
@@ -28,6 +29,36 @@
 </head>
 <body>
     <!--------------------------------------- Header ---------------------------------->
+    
+<?php
+session_start();
+include 'config.php';
+error_reporting(E_ALL ^ E_WARNING);
+if(isset($_POST['logout'])){
+  $_SESSION['login'] = "false";
+  echo "<script> alert('Logged out!');
+        </script>";
+}
+// $_SESSION['login']="true";
+$log = $_SESSION['login'];
+echo "<script> alert('$log');
+</script>";
+
+if($_SESSION['login'] == "true"){
+  echo "<script> alert('Hii');
+</script>";
+}
+
+
+
+$user_ = $_SESSION['email'];
+$sql = "SELECT * FROM patients where email='$user_'";
+$res = mysqli_query($conn,$sql);
+$user_details = mysqli_fetch_array($res);
+  echo "<script> alert($user_);
+</script>";
+
+?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -66,23 +97,23 @@
                             <a class="nav-link active" href="login.html">Login/Signup</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="btn btn-prime btn-sm" href="login.php">Login / Register</a>
-                          </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: none;">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                          </li>
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                    </ul>
+                          <a class="show btn btn-prime" href="login.php" id="login">LOGIN/Register</a>
+                        </li>
+                      <li class="nav-item">
+                        <li class="nav-item dropdown hidee" id="logout">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $user_details['fname'] ?>
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <form action="index.php" method="post">
+                              <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
+                            </form>
+                          </ul>
+                        </li>
+                      </li>
+                </ul>
                 </div>
             </div>
             <script type="text/javascript">
@@ -92,56 +123,17 @@
             </script>
         </nav>
     </header>
+    <header>
+          <div id="google_translate_element" class="lang_trans"></div>
+    </header>
 
-    <!-------------------------------------- Carousel ------------------------------------>
-        <!-- <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner"> -->
-            <!-- -----------------------------First slide------------------------------- -->
-            <!-- <div class="carousel-item active">
-                <img src="https://onmining.com/app/webroot/img/login/portfolio/fullscreen/placeholder.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div> -->
-            <!-- -----------------------------Second slide------------------------------- -->
-            <!-- <div class="carousel-item">
-                <img src="https://onmining.com/app/webroot/img/login/portfolio/fullscreen/placeholder.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div> -->
-            <!-- -----------------------------Third slide------------------------------- -->
-            <!-- <div class="carousel-item">
-                <img src="https://onmining.com/app/webroot/img/login/portfolio/fullscreen/placeholder.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div> -->
-        <!-- </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div> -->
-    <!-- Section -->
+   
     <div class="page-section pb-0">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-6 b-head">
               <h1>Welcome to Your<br> Health  Center</h1>
-              <!-- <p class="text-grey mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Accusantium aperiam earum ipsa eius, inventore nemo labore eaque porro consequatur ex aspernatur. Explicabo, excepturi accusantium! Placeat voluptates esse ut optio facilis!</p> -->
+              
               <a href="about.html" class="btn btn-outline-success">Learn More</a>
             </div>
             <div class="col-lg-6 " data-wow-delay="400ms">
@@ -218,41 +210,7 @@
         </div>
         
       </div>
-      <!-- <div class="blog-column col-lg-4 col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h3>Labrador</h3>
-  
-          </div>
-          <div class="card-body">
-            <h2>&#8377;49 / mo</h2>
-            <p>Unlimited Matches</p>
-            <p>Unlimited Messages</p>
-            <p>Unlimited App Usage</p>
-            <pre>      </pre>
-            <button type="button" class="btn btn-dark sign-up"><i class="fas fa-user-plus"></i> Sign Up</button>
-  
-          </div>
-        </div>
-        
-      </div>
-      <div class="blog-column col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <h3>Mastiff</h3>
-  
-          </div>
-          <div class="card-body">
-            <h2>&#8377;99 / mo</h2>
-            <p>Pirority Listing</p>
-            <p>Unlimited Matches</p>
-            <p>Unlimited Messages</p>
-            <p>Unlimited App Usage</p>
-            <button type="button" class="btn btn-dark sign-up"><i class="fas fa-user-plus"></i> Sign Up</button>
-  
-          </div>
-        </div>
-      </div> -->
+
         
       </div>
       
@@ -308,5 +266,41 @@
         <p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p> -->
       </div>
     </footer>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
+
+<?php
+// echo $_SESSION['admin'];
+
+if($_SESSION['login']=="true"){
+  echo "<script>
+  document.getElementById('login').classList.replace('show','hidee');
+  document.getElementById('logout').classList.replace('hidee','show');
+  </script>";
+}
+else{
+  echo "<script>
+  // document.getElementById('login').innerHTML = 'HI';
+  
+  </script>";
+
+ }
+
+  //   else if($_SESSION['login']=="true" && $_SESSION['admin'] == "false"){
+  //   echo "<script>
+  //   document.getElementById('login').classList.replace('show','hidee');
+  //   document.getElementById('logout').classList.replace('hidee','show');
+  //   document.getElementById('get').classList.replace('hidee','show');
+  //   document.getElementById('search').classList.replace('hidee','show');
+  //     document.getElementById('add').classList.replace('show','hidee');
+  //   </script>";
+  // }
+
+  
+    ?>

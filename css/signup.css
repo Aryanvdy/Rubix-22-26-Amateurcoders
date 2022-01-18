@@ -114,3 +114,23 @@ body{
     text-align: center;
   }
   
+.btn-prime{
+	background-color: #00D9A5;
+	border-color: #00D9A5;
+	font-weight: 500;
+	font-size: 1.3rem;
+	color: #ffffff;
+    border: none;
+
+}
+.btn-prime:hover{
+	background-color: #0e9777;
+	border-color: #0e9777;
+	color: #ffffff;
+    border:transparent;
+}
+.btn-prime:focus{
+    border-color: #00D9A5;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #00D9A5;
+}

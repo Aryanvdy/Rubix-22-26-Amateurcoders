@@ -1,0 +1,44 @@
+body{
+
+    top: 0 !important;
+}
+.goog-te-banner{
+    display: none;
+    
+}
+iframe{
+    visibility: hidden !important;
+
+}
+
+.goog-te-banner-frame {
+    display:none !important
+    }
+
+div#google_translate_element{
+    display: block !important;
+    border-radius: 10px !important;
+}
+
+.lang_trans{
+    border-radius: 10px !important;
+    text-align: right !important;
+}
+
+.goog-te-combo{
+    width: 170px;
+    border-radius: 50px;
+    padding: 5px ;
+    margin-right: 10px !important;
+    font-size: 1.1rem !important;
+    border: 2px solid black;
+    margin-top: -20px !important;
+
+}
+.goog-logo-link {
+    display: none;
+}
+
+.goog-te-gadget{
+    color: transparent !important;
+ }

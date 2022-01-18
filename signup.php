@@ -36,14 +36,42 @@
         if($password==$con_password && strlen($password)>8){
             $mysql="INSERT INTO patients values('{$fname}','{$lname}','{$email}','{$contact}', '{$aadhaar}','{$gender}','{$password}')";
             $result=mysqli_query($conn,$mysql);
-            // echo $result;
-        
-            // $sql="INSERT INTO details (name, gender, blood_grp, aadhaar_no, date, contact_no, email, state, district, city) values('{$name}','{$gender}','{$blood_grp}','{$aadhaar}','{$dob}','{$contact}','{$email}','{$state}','{$district}','{$city}')";
-            // $result1=mysqli_query($conn,$sql);
-            // echo $result1;
+
             
             if($result){
                 echo "<script> alert('User created and details saved successfully!');
+                window.location='login.php';
+                </script>";
+            }
+            else{
+                echo $conn->error;
+                // echo "<script> alert('User not registered!');
+                // </script>";
+        
+            }
+        }
+    }
+
+
+
+    // Doctor Signup
+    if(isset($_POST['dsubmit'])){
+        $fname=$_POST['d_fname'];
+        $lname=$_POST['d_lname'];
+        $contact=$_POST['d_phone'];
+        $email=$_POST['d_email'];
+        $gender=$_POST['d_gender'];
+        $speciality=$_POST['d_speciality'];
+        $password=$_POST['d_pass'];
+        $con_password=$_POST['d_cpass'];
+
+        if($password==$con_password && strlen($password)>8){
+            $mysql="INSERT INTO doctors values('{$fname}','{$lname}','{$email}','{$contact}', '{$speciality}','{$gender}','{$password}')";
+            $result=mysqli_query($conn,$mysql);
+
+            
+            if($result){
+                echo "<script> alert('Doctor created and details saved successfully!');
                 window.location='login.php';
                 </script>";
             }
@@ -59,14 +87,15 @@
 
 ?>
 
+
 <!-- <html> -->
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left">
-                <a class="" href="index.html">
+                <a class="" href="index.php">
                 <img src="img/FindCare-White.png" alt=""/>
                 </a>
-                <a class="btn btn-prime" href="login.html">Login</a>
+                <a class="btn " href="login.php">Login</a>
             </div>
             <div class="col-md-9 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -119,58 +148,71 @@
                                     </div>
 
                                     
-                                    <button type="submit" value="Submit" name="submit">Submit</button>
+                                    <button type="submit" value="Submit" class="btn btn-prime" name="psubmit">Submit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <h3  class="register-heading">Signup as a Doctor</h3>
-                        <div class="row register-form">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name *" value="" />
-                                </div>
-                                
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Speciality *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" value="" />
-                                </div>
-                                
+                        <form action="signup.php" method="post">
+                            <div class="row register-form">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="First Name *" value="" name="d_fname"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Email *" value="" name="d_email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Speciality *" value="" name="d_speciality"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Password *" value="" name="d_pass"/>
+                                    </div>
+                                    
 
 
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Last Name *" value="" name="d_lname"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" name="d_phone"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="d_gender">
+                                            <option class="hidden"  selected disabled>Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Confirm Password *" value="" name="d_cpass"/>
+                                    </div>
+                                    
+                                    <button type="submit" value="Submit" class="btn btn-prime" name="dsubmit">Register</button>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control">
-                                        <option class="hidden"  selected disabled>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="cpass" placeholder="Confirm Password *" value="" />
-                                </div>
-                                
-                                <input type="submit" class="btnRegister"  value="Register"/>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>				                            
 </body>
+<script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script> 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </html>

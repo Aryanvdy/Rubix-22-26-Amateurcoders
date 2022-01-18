@@ -14,6 +14,14 @@
     text-align: right;
 }
 
+.show{
+    display: block;
+}
+
+.hidee{
+    display: none;
+}
+
 .btn-prime {
     color: #fff;
     background-color: #00d9a5;

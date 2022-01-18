@@ -13,26 +13,45 @@
 
 <body class="my-login-page">
 	<?php
-	session_start();
-	// echo $_SESSION['login'];
+	
 	include 'config.php';
 	$_SESSION['login'] = "false";
-	// $_SESSION['admin'] = "false";
-	// $_SESSION['email']  = 'admin@gmail.com';
 	if(isset($_POST['psubmit'])){
 		$email=$_POST['email'];
 		$password=$_POST['pass'];
 		$s =" select * from patients where email = '$email' && password = '$password'";
+		$d =" select * from doctors where email = '$email' && password = '$password'";
 
-		$result=mysqli_query($conn,$s);
-		$num = mysqli_num_rows($result);
-		if($num == 1){
+		$result_p=mysqli_query($conn,$s);
+		$result_d=mysqli_query($conn,$d);
+
+		$num_p = mysqli_num_rows($result_p);
+		$num_d = mysqli_num_rows($result_d);
+
+
+		if($num_p == 1){
 			$_SESSION['login'] = "true";
-			$user_name = mysqli_fetch_array($result);
+			$user_name = mysqli_fetch_array($result_p);
 			$_SESSION['email']  = $email;
+			$_SESSION['user'] = "patient";
+			$log = $_SESSION['login'];
 			echo "<script>
-			alert('logged in as $email ');
-			window.location='index.html';
+			window.location='index.php';
+			alert('$log logged in as $email ');
+			console.log('heyy')
+			console.log(document.getElementById('login').innerText);
+
+			// Welcome(num);
+			</script>";
+		}
+		else if($num_d ==1){
+			$_SESSION['login'] = "true";
+			$user_name = mysqli_fetch_array($result_d);
+			$_SESSION['email']  = $email;
+			$_SESSION['user'] = "doctor";
+			echo "<script>
+			alert('Doctor logged in as $email ');
+			window.location='index.php';
 			console.log('heyy')
 			console.log(document.getElementById('login').innerText);
 
@@ -40,7 +59,7 @@
 			</script>";
 		}
 		else{
-			$_SESSION['login'] = "false";
+			
 			echo "<script> alert('Try again!');
 			</script>";
 		}
@@ -52,7 +71,7 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<a href="index.html">
+						<a href="index.php">
 						<img src="img/FindCare-Logo.png" alt="">
 						</a>
 					</div>
@@ -95,9 +114,19 @@
 			</div>
 		</div>
 	</section>
-
+	<script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script> 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

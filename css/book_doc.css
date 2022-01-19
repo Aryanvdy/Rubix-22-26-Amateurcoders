@@ -1,3 +1,9 @@
+body{
+  overflow-x: hidden;
+  background-image: url('../img/Bookdoc_bg.png');
+  background-size: contain;
+}
+
 .card{
   border: 2px solid #00d9a5;
 }
@@ -16,13 +22,21 @@
   margin-left: 2%;
 }
 .buttonss{
-  margin-top: -3rem;
-  width: 80%;
-  margin-left: 5%;
+  width: 100%;
+  margin-left: 2.6%;
+  font-size: 1.3rem;
+  color: #00d9a5;
+  
+}
+
+.rbtn{
+  margin-left: 2%;
+  font-weight: 900;
 }
 
 .btn-b{
-  width:100%;
+  margin: 2rem 0 2rem 2rem;
+  width:10%;
 	color: #00D9A5;
 	border-color: #00D9A5;
 	font-weight: 500;

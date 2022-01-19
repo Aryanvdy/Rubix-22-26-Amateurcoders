@@ -68,20 +68,20 @@ $user_details = mysqli_fetch_array($res);
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active hover-underline-animation" aria-current="page" href="#">Home</a>
+                            <a class="nav-link  hover-underline-animation" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" href="videoconsult.php">Video Consult</a>
+                            <a class="nav-link active hover-underline-animation" href="videoconsult.php">Video Consult</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="finddoctor.php">Find Doctor</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="pharmacy.php">Pharmacy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="labtest.php">Lab Test</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
                         <li class="nav-item">
@@ -93,7 +93,8 @@ $user_details = mysqli_fetch_array($res);
                             <?php echo $user_details['fname'] ?>
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="news.php">News</a></li>
                             <!-- <li><a class="dropdown-item" href="#">Calculate BMI</a></li> -->
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
@@ -131,7 +132,7 @@ else{
 
 <!------------------------------------ Body---------------------------->
     <section>
-    <form action="finddoctor.php" method="post">
+    <form action="available_doctor.php" method="post">
               <section class="bg">  
               <br>
           <div id="google_translate_element" class="lang_trans"></div>
@@ -158,8 +159,9 @@ else{
                   </div>
             </form>
     </section>
-    <h1>Availabe Doctors</h1>
-    <div>
+    <div class="hidee" id="tbl">
+        <hr>
+        <h2>Available Doctors</h2>
         <table class="table table-hover table-bordered" style="border-color:black;">
             <thead >
                 <tr>
@@ -171,10 +173,22 @@ else{
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
             <?php 
-                $sql ="select * from doctors";
-                $query =mysqli_query($conn, $sql);
+             
+              if(isset($_POST['submit'])){
+                $speciality=$_POST['speciality'];
+                $s =" select * from doctors where speciality = '$speciality'";
+            
+                $query =mysqli_query($conn, $s);
+                $num = mysqli_num_rows($query);
+
+                if($num >= 1){
+                  echo "<script>document.getElementById('tbl').classList.replace('hidee','show');
+                  </script>";
+                }
+
+
                 while($rows = mysqli_fetch_assoc($query))
                 {
             ?>
@@ -192,11 +206,65 @@ else{
                     </td>
                 </tr>
 
-            <?php } ?>
+            <?php }
+            } ?>
             </tbody>
         </table>
 
     </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row px-md-3">
+          <div class="col-sm-6 col-lg-3 py-3">
+            <h5>Company</h5>
+            <ul class="footer-menu">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Career</a></li>
+              <li><a href="#">Editorial Team</a></li>
+              <li><a href="#">Protection</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-3 py-3">
+            <h5>More</h5>
+            <ul class="footer-menu">
+              <li><a href="#">Terms & Condition</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Advertise</a></li>
+              <li><a href="#">Join as Doctors</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-3 py-3">
+            <h5>Our partner</h5>
+            <ul class="footer-menu">
+              <li><a href="#">One-Fitness</a></li>
+              <li><a href="#">One-Drugs</a></li>
+              <li><a href="#">One-Live</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-3 py-3">
+            <h5>Contact</h5>
+            <p class="footer-link mt-2">Bakers Street, Colaba, Mumbai.</p>
+            <a href="#" class="footer-link">9895989598</a>
+            <a href="#" class="footer-link">findcare@temporary.net</a>
+  
+            <h5 class="mt-3">Social Media</h5>
+            <div class="footer-sosmed mt-3">
+              <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+  
+        </div>
+    </footer>
+    <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');

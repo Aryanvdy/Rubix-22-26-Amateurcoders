@@ -43,7 +43,11 @@
 	}
 
 	
-
+h2{
+	margin: auto;
+	text-align: center;
+	color: #00D9A5;
+}
 td{
     text-align: center;
 }

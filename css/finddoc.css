@@ -2,6 +2,8 @@
     background-image: url('../img/FindDoc-MainPage.png');
     /* background-repeat: no-repeat; */
     background-size: contain, cover;
+
+    padding-bottom: 5%;
 }
 
 .mar{

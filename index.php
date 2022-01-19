@@ -75,12 +75,12 @@ $user_details = mysqli_fetch_array($res);
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="finddoctor.php">Find Doctor</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="pharmacy.php">Pharmacy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="labtest.php">Lab Test</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
                         <li class="nav-item">
@@ -92,7 +92,8 @@ $user_details = mysqli_fetch_array($res);
                             <?php echo $user_details['fname'] ?>
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="news.php">News</a></li>
                             <li><a class="dropdown-item" href="#">Manage Appointments</a></li>
 
                             <form action="index.php" method="post">

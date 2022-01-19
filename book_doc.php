@@ -12,6 +12,8 @@
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/home.css">
@@ -73,12 +75,12 @@ $user_details = mysqli_fetch_array($res);
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="finddoctor.php">Find Doctor</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="pharmacy.php">Pharmacy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="labtest.php">Lab Test</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
                         <li class="nav-item">
@@ -90,7 +92,8 @@ $user_details = mysqli_fetch_array($res);
                             <?php echo $user_details['fname'] ?>
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="news.php">News</a></li>
                             <!-- <li><a class="dropdown-item" href="#">Calculate BMI</a></li> -->
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
@@ -139,15 +142,31 @@ else{
         echo "Error : ".$sql."<br>".mysqli_error($conn);
     }
     $rows=mysqli_fetch_assoc($result);
-    $n = $rows['email'];
+    $_SESSION['emaill'] = $rows['email'];
+    
 
 
-      // echo "<script>
-      //       alert('$n');  
-      //       alert('$em');
-      //   </script>";
+if(isset($_POST['submit'])){
+    $slot=$_POST['slot'];
+    $eml = $_POST['hidemail'];
+    $date = date('Y-m-d'); 
+    $sql_dt="INSERT INTO doctor_timing values('{$eml}','{$date}','{$slot}')";
+    $result_dt=mysqli_query($conn,$sql_dt);
+
+    
+    if($result){
+        echo "<script> alert('Booking Successful!');
+        window.location='index.php';
+        </script>";
+    }
+    else{
+        echo $conn->error;
+        echo "<script> alert('Issue with Database');
+        </script>";
+
+    }
+}
 ?>
-
 <section>
 <section class="w-s info" id="blog">
 <div class="row">
@@ -169,39 +188,41 @@ else{
 
     <div class="container-fluid buttonss">
 
-        <div class="row buttonn">
+       <div class="row buttonn">
+        <form action="book_doc.php" method="post" class="buttonss">
+        <div class="form-group" style="display:none">
+            <select class="form-control" name="hidemail">
+                <option name="hidden" value="<?php echo $rows['email'] ?>">Gender</option>
+            </select>
+        </div>
+        <?php 
+             $mail = $rows['email'];
+             $d = date('Y-m-d');
+             $select = mysqli_query($conn, "SELECT `slot` FROM `doctor_timing` WHERE `email` = '$mail' && `date` = '$d' && `slot`='10:00 am'");
+             $numb = mysqli_num_rows($select);
+             if($numb==0) { ?>
+               <input class="rbtn" type="radio" name="slot" value="10:00 am">10:00 am
+             <?php }
+             
+             
+             
+        ?>
+
+
           
-        <div class="feature-box col-lg-2">
-            <button class="btn btn-b" onclick="email_notify()">
-                10:00 am
-              </button>
-        </div>
-        <div class="feature-box col-lg-2">
-            <button class="btn btn-b">
-                12:00 pm
-              </button>
-        </div>
-        <div class="feature-box col-lg-2">
-            <button class="btn btn-b">
-                2:00 pm
-              </button>
-        </div>
-        <div class="feature-box col-lg-2">
-            <button class="btn btn-b">
-                4:00 pm
-              </button>
-        </div>
-        <div class="feature-box col-lg-2">
-            <button class="btn btn-b">
-                6:00 pm
-              </button>
-        </div>
-        <div class="feature-box col-lg-2">
-            <button class="btn btn-b">
-                8:00 pm
-              </button>
-        </div>
-        
+
+
+
+
+
+          <!-- <input class="rbtn" type="radio" name="slot" value="10:00 am">10:00 am -->
+          <input class="rbtn" type="radio" name="slot" value="12:00 pm">12:00 pm
+          <input class="rbtn" type="radio" name="slot" value="2:00 pm">2:00 pm
+          <input class="rbtn" type="radio" name="slot" value="4:00 pm">4:00 pm
+          <input class="rbtn" type="radio" name="slot" value="6:00 pm">6:00 pm
+          <input class="rbtn" type="radio" name="slot" value="8:00 pm">8:00 pm<br>
+          <button class="btn btn-b" type="submit" name="submit" onclick="email_notify()">Submit</button>
+        </form>
       </div>
     </div>
     </section>
@@ -266,28 +287,49 @@ else{
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         <script>
           	function email_notify(){
-              var useremail='<?php echo $user_; ?>';
-              var docemail = '<?php echo $rows['email'];?>';
-              alert(useremail);
-              jQuery.ajax({
-                  url:'send_mail.php',
-                  type:'post',
-                  data:'email='+email,
-                  success:function(result){
-                    if(result=='done'){
-                      alert('DONE!!!')
-                    }
-                  }
-            });
+              <?php 
+                include('configuration.php');
+                include('api.php');
+                $arr['topic']='FindCare- Doctor Consultation';
+                $arr['start_date']=date('Y/m/d');
+                $arr['duration']=30;
+                $arr['password']='FindCare';
+                $arr['type']='2';
+                $result=createMeeting($arr);
+                if(isset($result->id)){
+                  $html = "Join URL: <a href='".$result->join_url."'>".$result->join_url."</a><br/>
+                            Password: ".$result->password."<br/>
+                            Start Time: ".$result->start_time."<br/>
+                            Duration: ".$result->duration."<br/>";
+                }else{
+                  echo '<pre>';
+                  print_r($result);
+                }
+                include('smtp/PHPMailerAutoload.php');
+                $mail=new PHPMailer(true);
+                $mail->isSMTP();
+                $mail->Host="smtp.gmail.com";
+                $mail->Port=587;
+                $mail->SMTPSecure="tls";
+                $mail->SMTPAuth=true;
+                $mail->Username="avidyarthi513@gmail.com";
+                $mail->Password="aryanvdy@5502";
+                $mail->SetFrom("avidyarthi513@gmail.com");
+                $mail->addAddress('phulwanikashish46@gmail.com');
+                $mail->IsHTML(true);
+                $mail->Subject="New OTP";
+                $mail->Body=$html;
+                $mail->SMTPOptions=array('ssl'=>array(
+                  'verify_peer'=>false,
+                  'verify_peer_name'=>false,
+                  'allow_self_signed'=>false
+                ));
+                if($mail->send()){
+                  echo "done";                
+                }
+          ?>
                 
             }
         </script>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-  
-    

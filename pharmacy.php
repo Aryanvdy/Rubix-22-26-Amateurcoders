@@ -92,8 +92,8 @@ $user_details = mysqli_fetch_array($res);
                             <?php echo $user_details['fname'] ?>
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <!-- <li><a class="dropdown-item" href="#">Calculate BMI</a></li> -->
+                            <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="news.php">News</a></li>
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
                             </form>

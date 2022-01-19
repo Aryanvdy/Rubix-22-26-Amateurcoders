@@ -1,0 +1,16 @@
+body{
+    background-color: white;
+}
+.bodyy{
+    width: 80%;
+    margin-left: 10%;
+    /* text-align: center; */
+}
+.imagee{
+    padding-top: 4rem;
+    width: 300px;
+}
+
+.page-footer{
+    width: 100% !important;
+}

@@ -13,7 +13,6 @@
 
 <body class="my-login-page">
 	<?php
-	
 	include 'config.php';
 	$_SESSION['login'] = "false";
 	if(isset($_POST['psubmit'])){

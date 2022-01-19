@@ -1,9 +1,32 @@
+.card{
+  border: 2px solid #00d9a5;
+}
+.card-header{
+  background-color: #00d9a5;
+  color: #ffffff;
+}
+
+.h4{
+  padding: 1.1rem;
+  color: #00d9a5;
+}
+
+
+.info{
+  margin-left: 2%;
+}
+.buttonss{
+  margin-top: -3rem;
+  width: 80%;
+  margin-left: 5%;
+}
+
 .btn-b{
-    width:40%;
+  width:100%;
 	color: #00D9A5;
 	border-color: #00D9A5;
 	font-weight: 500;
-	font-size: 1.3rem;
+	font-size: 1.1rem;
 	background-color: #ffffff;
 }
 .btn-b:hover{
@@ -16,15 +39,3 @@
     outline: 0;
     box-shadow: 0 0 0 0.2rem #00D9A5;
 }
-
-
-/* .buttonss {
-    flex-direction: row;
-  }
-  
-.buttonss {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-  } */
-  /* ---------------------------------------- */

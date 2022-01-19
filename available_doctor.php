@@ -94,7 +94,7 @@ $user_details = mysqli_fetch_array($res);
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">Calculate BMI</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Calculate BMI</a></li> -->
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
                             </form>
@@ -184,7 +184,7 @@ else{
                     <td class="py-2 " ><?php echo $rows['city']; ?> </td>
                     <td class="py-2 " ><?php echo $rows['phone']; ?> </td>
                     <td class="py-2" >
-                        <a href="book_doc.php?email= <?php echo $rows['email'] ;?>"> 
+                        <a href="book_doc.php?email=<?php echo $rows['email'];?>"> 
                                 <button type="button" class="btn btn-prime" >
                                     <strong>Book Appointment</strong>
                                 </button>  

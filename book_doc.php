@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/maicons.css">
     <link rel="stylesheet" href="css/lang.css">
+    <link rel="stylesheet" href="css/book_doc.css">
     <!-- Font Awsome -->
     <script src="https://kit.fontawesome.com/47d85d73c6.js" crossorigin="anonymous"></script>
     <!-- Icon -->
@@ -39,9 +40,6 @@ if(isset($_POST['logout'])){
   echo "<script> alert('Logged out!');
         </script>";
 }
-
-
-
 
 
 $user_ = $_SESSION['email'];
@@ -67,10 +65,10 @@ $user_details = mysqli_fetch_array($res);
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active hover-underline-animation" aria-current="page" href="#">Home</a>
+                            <a class="nav-link  hover-underline-animation" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" href="videoconsult.php">Video Consult</a>
+                            <a class="nav-link active hover-underline-animation" href="videoconsult.php">Video Consult</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="finddoctor.php">Find Doctor</a>
@@ -93,7 +91,7 @@ $user_details = mysqli_fetch_array($res);
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">Calculate BMI</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Calculate BMI</a></li> -->
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
                             </form>
@@ -132,8 +130,7 @@ else{
 <!------------------------------- Header End-------------------------------------------- -->
 <?php
     
-    // $em=$_GET['email'];
-    $em = 'av@gmail.com';
+    $em=$_GET['email'];
     $sql = "SELECT * FROM  doctors where email='$em'";
     $result=mysqli_query($conn,$sql);
     
@@ -145,25 +142,65 @@ else{
     $n = $rows['email'];
 
 
-      echo "<script>
-            alert('$n');  
-            alert('$em');
-        </script>";
+      // echo "<script>
+      //       alert('$n');  
+      //       alert('$em');
+      //   </script>";
 ?>
 
 <section>
-      <h1>Doctor Name <?php  echo $rows['email'].' '.$rows['lname']; ?></h1>
-      <h2>Doctor Info</h2>
-      <div class="container-fluid buttonss">
+<section class="w-s info" id="blog">
+<div class="row">
+  <div class="blog-column col-lg-4 col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3>Name: <?php  echo $rows['fname'].' '.$rows['lname']; ?></h3>
+      </div>
+      <div class="h4">
+        <h4>Contact: <?php  echo $rows['phone'] ?></h4>
+        <h4>Email: <?php  echo $rows['email']?></h4>
+        <h4>Speciality: <?php  echo $rows['speciality']?></h4>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
 
-        <div class="row">
+    <div class="container-fluid buttonss">
+
+        <div class="row buttonn">
           
-        <div class="feature-box col-lg-4">
-            <button class="btn btn-b">
-                10 am
+        <div class="feature-box col-lg-2">
+            <button class="btn btn-b" onclick="email_notify()">
+                10:00 am
               </button>
         </div>
-  
+        <div class="feature-box col-lg-2">
+            <button class="btn btn-b">
+                12:00 pm
+              </button>
+        </div>
+        <div class="feature-box col-lg-2">
+            <button class="btn btn-b">
+                2:00 pm
+              </button>
+        </div>
+        <div class="feature-box col-lg-2">
+            <button class="btn btn-b">
+                4:00 pm
+              </button>
+        </div>
+        <div class="feature-box col-lg-2">
+            <button class="btn btn-b">
+                6:00 pm
+              </button>
+        </div>
+        <div class="feature-box col-lg-2">
+            <button class="btn btn-b">
+                8:00 pm
+              </button>
+        </div>
         
       </div>
     </div>
@@ -227,7 +264,26 @@ else{
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
+        <script>
+          	function email_notify(){
+              var useremail='<?php echo $user_; ?>';
+              var docemail = '<?php echo $rows['email'];?>';
+              alert(useremail);
+              jQuery.ajax({
+                  url:'send_mail.php',
+                  type:'post',
+                  data:'email='+email,
+                  success:function(result){
+                    if(result=='done'){
+                      alert('DONE!!!')
+                    }
+                  }
+            });
+                
+            }
+        </script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  </body>
 </html>
 
 

@@ -93,7 +93,8 @@ $user_details = mysqli_fetch_array($res);
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">Calculate BMI</a></li>
+                            <li><a class="dropdown-item" href="#">Manage Appointments</a></li>
+
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
                             </form>

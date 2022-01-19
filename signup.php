@@ -23,8 +23,9 @@
 
 <?php
 // session_start();
+
     include 'config.php';
-    if(isset($_POST['submit'])){
+    if(isset($_POST['psubmit'])){
         $fname=$_POST['fname'];
         $lname=$_POST['lname'];
         $gender=$_POST['gender'];
@@ -52,6 +53,11 @@
                 </script>";
         
             }
+        }
+        else{
+            echo $conn->error;
+            echo "<script> alert('User is not registered!');
+            </script>";
         }
     }
 
@@ -163,7 +169,7 @@
                                     </div>
 
                                     
-                                    <button type="submit" value="Submit" class="btn btn-prime" name="psubmit">Submit</button>
+                                    <button type="submit" value="Submit" class="btn btn-prime" name="psubmit">Register</button>
                                 </div>
                             </div>
                         </form>

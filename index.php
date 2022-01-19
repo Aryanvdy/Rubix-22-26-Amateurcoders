@@ -33,7 +33,7 @@
 <?php
 session_start();
 include 'config.php';
-// error_reporting(E_ALL ^ E_WARNING);
+error_reporting(E_ALL ^ E_WARNING);
 if(isset($_POST['logout'])){
   $_SESSION['login'] = "false";
   echo "<script> alert('Logged out!');

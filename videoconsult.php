@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/maicons.css">
+    <!-- <link rel="stylesheet" href="css/viddcon.css"> -->
     <!-- Font Awsome -->
     <script src="https://kit.fontawesome.com/47d85d73c6.js" crossorigin="anonymous"></script>
     <!-- Icon -->

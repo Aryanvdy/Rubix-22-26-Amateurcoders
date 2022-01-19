@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/available_doc.css">
+    <link rel="stylesheet" href="css/book_doc.css">
     <link rel="stylesheet" href="css/lang.css">
     <!-- Font Awsome -->
     <script src="https://kit.fontawesome.com/47d85d73c6.js" crossorigin="anonymous"></script>
@@ -29,8 +30,9 @@
 
 </head>
 <body>
+    <!--------------------------------------- Header ---------------------------------->
     
-<?php
+    <?php
 session_start();
 include 'config.php';
 error_reporting(E_ALL ^ E_WARNING);
@@ -49,22 +51,23 @@ $user_details = mysqli_fetch_array($res);
 // </script>";
 
 ?>
- <?php
+
+<?php
 // echo $_SESSION['admin'];
 
-        if($_SESSION['login']=="true"){
-        echo "<script>
-        document.getElementById('login').classList.replace('show','hidee');
-        document.getElementById('logout').classList.replace('hidee','show');
-        </script>";
-        }
-        else{
-        echo "<script>
-        // document.getElementById('login').innerHTML = 'HI';
-        
-        </script>";
+if($_SESSION['login']=="true"){
+  echo "<script>
+  document.getElementById('login').classList.replace('show','hidee');
+  document.getElementById('logout').classList.replace('hidee','show');
+  </script>";
+}
+else{
+  echo "<script>
+  // document.getElementById('login').innerHTML = 'HI';
+  
+  </script>";
 
-        }
+ }
  ?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -122,80 +125,70 @@ $user_details = mysqli_fetch_array($res);
         <br>
           <div id="google_translate_element" class="lang_trans"></div>
     </header>
+   
 
-<!------------------------------------ Body---------------------------->
-    <section>
-    <form action="finddoctor.php" method="post">
-              <section class="bg">  
-              <br>
-          <div id="google_translate_element" class="lang_trans"></div>
-                  <div id="google_translate_element" class="lang_trans"></div>
-                  <select class="form-select" name="speciality" aria-label="Default select example" required>
-                    <option selected disabled>Select Speciality</option>
-                    <option value="General">General Physician</option>
-                    <option value="dentist">Dentist</option>
-                    <option value="orthodontist">Orthodontist</option>
-                    <option value="gynaecologist">Gynaecologist</option>
-                    <option value="ent specialist">ENT Specialist</option>
-                    <option value="pysiotherapist">Pysiotherapist</option>
-                    <option value="eye specialist">Eye Specialist</option>
-                    <option value="dermatologist">Dermatologist</option>
-                  </select>
-                  <div class="row form-group">
-                    <div>
-                        <input type="text" name="serach_doc" class="form-control" placeholder="Search Doctor">
-                    </div>
-                    <br>
-                  </div>
-                  <div class="form-group">
-                    <button class="btn btn-s" name="submit">Search</button>
-                  </div>
-            </form>
-    </section>
-    <h1>Availabe Doctors</h1>
-    <div>
-        <table class="table table-hover table-bordered" style="border-color:black;">
-            <thead >
-                <tr>
-                    <!-- <th class="text-center">Doctor Id</th> -->
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Speciality</th>
-                    <th class="text-center">City</th>
-                    <th class="text-center">Contact</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php 
-                $sql ="select * from doctors";
-                $query =mysqli_query($conn, $sql);
-                while($rows = mysqli_fetch_assoc($query))
-                {
-            ?>
-                <tr >
-                    <td class="py-2 " ><?php echo $rows['fname'].' '.$rows['lname']; ?></td>
-                    <td class="py-2 " ><?php echo $rows['speciality']; ?></td>
-                    <td class="py-2 " ><?php echo $rows['city']; ?> </td>
-                    <td class="py-2 " ><?php echo $rows['phone']; ?> </td>
-                    <td class="py-2" >
-                        <a href="book_doc.php?email= <?php echo $rows['email'] ;?>"> 
-                                <button type="button" class="btn btn-prime" >
-                                    <strong>Book Appointment</strong>
-                                </button>  
-                        </a>
-                    </td>
-                </tr>
 
-            <?php } ?>
-            </tbody>
-        </table>
 
-    </div>
-    <script type="text/javascript">
+<!------------------------------- Header End-------------------------------------------- -->
+
+
+<!--------------------------------------------Body -------------------------------------->
+
+    <!------------------------------- footer --------------------------------------------->
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row px-md-3">
+            <div class="col-sm-6 col-lg-3 py-3">
+              <h5>Company</h5>
+              <ul class="footer-menu">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Career</a></li>
+                <li><a href="#">Editorial Team</a></li>
+                <li><a href="#">Protection</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-lg-3 py-3">
+              <h5>More</h5>
+              <ul class="footer-menu">
+                <li><a href="#">Terms & Condition</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Advertise</a></li>
+                <li><a href="#">Join as Doctors</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-lg-3 py-3">
+              <h5>Our partner</h5>
+              <ul class="footer-menu">
+                <li><a href="#">One-Fitness</a></li>
+                <li><a href="#">One-Drugs</a></li>
+                <li><a href="#">One-Live</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-lg-3 py-3">
+              <h5>Contact</h5>
+              <p class="footer-link mt-2">Bakers Street, Colaba, Mumbai.</p>
+              <a href="#" class="footer-link">9895989598</a>
+              <a href="#" class="footer-link">findcare@temporary.net</a>
+    
+              <h5 class="mt-3">Social Media</h5>
+              <div class="footer-sosmed mt-3">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+    
+          </div>
+      </footer>
+      <script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
-</html>
+    </body>
+    </html>
+    

@@ -20,8 +20,8 @@
 	if(isset($_POST['psubmit'])){
 		$email=$_POST['email'];
 		$password=$_POST['pass'];
-		$s =" select * from patients where email = '$email' && password = '$password'";
-		$d =" select * from doctors where email = '$email' && password = '$password'";
+		$s ="select * from patients where email = '$email' && password = '$password'";
+		$d ="select * from doctors where email = '$email' && password = '$password'";
 
 		$result_p=mysqli_query($conn,$s);
 		$result_d=mysqli_query($conn,$d);

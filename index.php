@@ -33,21 +33,14 @@
 <?php
 session_start();
 include 'config.php';
-error_reporting(E_ALL ^ E_WARNING);
+// error_reporting(E_ALL ^ E_WARNING);
 if(isset($_POST['logout'])){
   $_SESSION['login'] = "false";
   echo "<script> alert('Logged out!');
         </script>";
 }
-// $_SESSION['login']="true";
-$log = $_SESSION['login'];
-echo "<script> alert('$log');
-</script>";
 
-if($_SESSION['login'] == "true"){
-  echo "<script> alert('Hii');
-</script>";
-}
+
 
 
 
@@ -55,8 +48,8 @@ $user_ = $_SESSION['email'];
 $sql = "SELECT * FROM patients where email='$user_'";
 $res = mysqli_query($conn,$sql);
 $user_details = mysqli_fetch_array($res);
-  echo "<script> alert($user_);
-</script>";
+//   echo "<script> alert($user_);
+// </script>";
 
 ?>
     <header>
@@ -88,14 +81,8 @@ $user_details = mysqli_fetch_array($res);
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="labtest.html">Lab Test</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link active" href="login.html">Login/Signup</a>
-                        </li> -->
                         <li class="nav-item">
                           <a class="show btn btn-prime" href="login.php" id="login">LOGIN/Register</a>
                         </li>
@@ -105,8 +92,8 @@ $user_details = mysqli_fetch_array($res);
                             <?php echo $user_details['fname'] ?>
                           </a>
                           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Calculate BMI</a></li>
                             <form action="index.php" method="post">
                               <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
                             </form>
@@ -116,14 +103,9 @@ $user_details = mysqli_fetch_array($res);
                 </ul>
                 </div>
             </div>
-            <script type="text/javascript">
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-              }
-            </script>
+
         </nav>
-    </header>
-    <header>
+        <br>
           <div id="google_translate_element" class="lang_trans"></div>
     </header>
 
@@ -246,9 +228,9 @@ $user_details = mysqli_fetch_array($res);
           </div>
           <div class="col-sm-6 col-lg-3 py-3">
             <h5>Contact</h5>
-            <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-            <a href="#" class="footer-link">701-573-7582</a>
-            <a href="#" class="footer-link">healthcare@temporary.net</a>
+            <p class="footer-link mt-2">Bakers Street, Colaba, Mumbai.</p>
+            <a href="#" class="footer-link">9895989598</a>
+            <a href="#" class="footer-link">findcare@temporary.net</a>
   
             <h5 class="mt-3">Social Media</h5>
             <div class="footer-sosmed mt-3">
@@ -261,10 +243,7 @@ $user_details = mysqli_fetch_array($res);
           </div>
         </div>
   
-        <!-- <hr>
-  
-        <p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p> -->
-      </div>
+        </div>
     </footer>
     <script type="text/javascript">
         function googleTranslateElementInit() {

@@ -15,6 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/lang.css">
 
 </head>
 <body>
@@ -89,6 +90,10 @@
 
 
 <!-- <html> -->
+    <header>    
+		<br>
+		<div id="google_translate_element" class="lang_trans"></div>
+	</header>
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left">
@@ -122,6 +127,9 @@
                                         <input type="number" class="form-control" name="aadhaar"placeholder="Aadhar Number *" value="" required/>
                                     </div>
                                     <div class="form-group">
+                                        <input type="text" class="form-control" name="city"placeholder="City *" value="" required/>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="password" class="form-control" name="pass"placeholder="Password *" value="" required/>
                                     </div>
                                     
@@ -142,6 +150,9 @@
                                             <option value="female">Female</option>
                                             <option value="other">Other</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  placeholder="Pincode *" value="" name="pincode" required/>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control"  placeholder="Confirm Password *" value="" name="cpass" required/>
@@ -169,6 +180,9 @@
                                         <input type="text" class="form-control" placeholder="Speciality *" value="" name="d_speciality"/>
                                     </div>
                                     <div class="form-group">
+                                        <input type="text" class="form-control" name="city"placeholder="City *" value="" required/>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Password *" value="" name="d_pass"/>
                                     </div>
                                     
@@ -189,6 +203,9 @@
                                             <option value="female">Female</option>
                                             <option value="other">Other</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="pincode"placeholder="Pincode *" value="" required/>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Confirm Password *" value="" name="d_cpass"/>

@@ -57,14 +57,8 @@
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="labtest.html">Lab Test</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link active" href="login.html">Login/Signup</a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="btn btn-prime btn-sm" href="login.html">Login / Register</a>
                           </li>
@@ -80,15 +74,55 @@
                                 <li><a class="dropdown-item" href="#">Logout</a></li>
                             </ul>
                           </li>
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
                     </ul>
                 </div>
             </div>
+            
+
+
+            
+	<!-- <div class="pizza">
+		<span id="namee" class="det">Name: <?php echo $rows['name'] ?></span>
+		<span class="det">Blood Group: <?php echo $rows['blood_grp']?></span> <br>
+		<span id="genderr" class="det">Gender: <?php echo $rows['gender'] ?></span>
+		<span id="num" class="det">Contact Number: <?php echo $rows['contact_no'] ?></span>
+		<div id="addr" class="det">Address: <?php echo $rows['city'].",&nbsp;";
+	 								echo $rows['district'].",&nbsp;";
+	 								echo $rows['state']?></div>
+
+	</div> -->
+
+	
+	
+    </nav>
+    </header>
+    <section class="w-s" id="features">
+                <div class="container-fluid">
+
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown link
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </section>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+        </script> 
             <script type="text/javascript">
                 function googleTranslateElementInit() {
                   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
                 }
             </script>
-        </nav>
-    </header>
+    
+</body>
+</html>

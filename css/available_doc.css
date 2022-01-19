@@ -1,0 +1,43 @@
+.roundedTable
+	{
+		border-radius: 6px 6px 6px 6px;
+		border: 1px solid #000;  
+		border-spacing: 0;
+		width: 300px;
+	}
+
+	.roundedTable tr:first-child td:first-child 
+	{
+		border-top-left-radius: 5px;
+	}
+	
+	.roundedTable tr:first-child td:last-child 
+	{
+		border-top-right-radius: 5px;
+	}
+	
+	.roundedTable tr:last-child td:first-child 
+	{
+		border-bottom-left-radius: 5px;
+	}
+	
+	.roundedTable tr:last-child td:last-child 
+	{
+		border-bottom-right-radius: 5px;
+	}
+/* optional setting to pad the table cells */
+	.roundedTable th, td
+	{
+		padding: 10px 10px 10px 10px; 
+	}
+/* optional setting to set the background color and font color of the first row - behave like a header */
+	.roundedTable tr:first-child td:first-child 
+	{
+		background-color: #000;
+		color: #FFF;
+	}
+/* optional setting to set the background color of the last row - behave like a footer */
+	.roundedTable tr:last-child td:last-child 
+	{
+		background-color: #CCC;
+	}

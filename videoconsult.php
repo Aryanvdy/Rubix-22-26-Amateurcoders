@@ -28,6 +28,28 @@
 </head>
 <body>
     <!--------------------------------------- Header ---------------------------------->
+    <?php
+session_start();
+include 'config.php';
+// error_reporting(E_ALL ^ E_WARNING);
+if(isset($_POST['logout'])){
+  $_SESSION['login'] = "false";
+  echo "<script> alert('Logged out!');
+        </script>";
+}
+
+
+
+
+
+$user_ = $_SESSION['email'];
+$sql = "SELECT * FROM patients where email='$user_'";
+$res = mysqli_query($conn,$sql);
+$user_details = mysqli_fetch_array($res);
+//   echo "<script> alert($user_);
+// </script>";
+
+?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -43,55 +65,69 @@
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link hover-underline-animation" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active hover-underline-animation" href="videoconsult.html">Video Consult</a>
+                            <a class="nav-link active hover-underline-animation" href="videoconsult.php">Video Consult</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" href="finddoctor.html">Find Doctor</a>
+                            <a class="nav-link hover-underline-animation" href="finddoctor.php">Find Doctor</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" href="pharmacy.html">Pharmacy</a>
+                            <a class="nav-link hover-underline-animation" href="pharmacy.php">Pharmacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" href="labtest.html">Lab Test</a>
+                            <a class="nav-link hover-underline-animation" href="labtest.php">Lab Test</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link active" href="login.html">Login/Signup</a>
-                        </li> -->
                         <li class="nav-item">
-                            <a class="btn btn-prime btn-sm" href="login.html">Login / Register</a>
-                          </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: none;">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                          </li>
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                    </ul>
+                          <a class="show btn btn-prime" href="login.php" id="login">LOGIN/Register</a>
+                        </li>
+                      <li class="nav-item">
+                        <li class="nav-item dropdown hidee" id="logout">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $user_details['fname'] ?>
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Calculate BMI</a></li>
+                            <form action="index.php" method="post">
+                              <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
+                            </form>
+                          </ul>
+                        </li>
+                      </li>
+                </ul>
                 </div>
             </div>
-            <script type="text/javascript">
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-              }
-          </script>
+
         </nav>
+        <br>
+          <div id="google_translate_element" class="lang_trans"></div>
     </header>
+    <?php
+// echo $_SESSION['admin'];
+
+if($_SESSION['login']=="true"){
+  echo "<script>
+  document.getElementById('login').classList.replace('show','hidee');
+  document.getElementById('logout').classList.replace('hidee','show');
+  </script>";
+}
+else{
+  echo "<script>
+  // document.getElementById('login').innerHTML = 'HI';
+  
+  </script>";
+
+ }
+ ?>
+   
+
+
+
+<!------------------------------- Header End-------------------------------------------- -->
     <!--------------------------------------- main body ----------------------------->
     <div class="page-section pb-0">
         <div class="container">
@@ -99,7 +135,7 @@
             <div class="col-lg-6 b-head">
               <h1>Cut the travel<br> Consult with your doctor online</h1>
               <!-- <p class="text-grey mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Accusantium aperiam earum ipsa eius, inventore nemo labore eaque porro consequatur ex aspernatur. Explicabo, excepturi accusantium! Placeat voluptates esse ut optio facilis!</p> -->
-              <a href="about.html" class="btn btn-outline-success">Book Appointment</a>
+              <a href="available_doctor.php" class="btn btn-outline-success">Book Appointment</a>
             </div>
             <div class="col-lg-6 " data-wow-delay="400ms">
               <div class="img-place custom-img">
@@ -179,11 +215,13 @@
             </div>
           </div>
     
-          <!-- <hr>
-    
-          <p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p> -->
         </div>
         
       </footer>
+      <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+              }
+          </script>
   </body>
   </html>

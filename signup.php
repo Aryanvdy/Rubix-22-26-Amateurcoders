@@ -31,11 +31,13 @@
         $aadhaar=$_POST['aadhaar'];
         $contact=$_POST['phone'];
         $email=$_POST['email'];
+        $city = $_POST['city'];
+        $pincode = $_POST['pincode'];
         $password=$_POST['pass'];
         $con_password=$_POST['cpass'];
 
         if($password==$con_password && strlen($password)>8){
-            $mysql="INSERT INTO patients values('{$fname}','{$lname}','{$email}','{$contact}', '{$aadhaar}','{$gender}','{$password}')";
+            $mysql="INSERT INTO patients values('{$fname}','{$lname}','{$email}','{$contact}', '{$aadhaar}','{$gender}','{$city}','{$pincode}','{$password}')";
             $result=mysqli_query($conn,$mysql);
 
             
@@ -46,8 +48,8 @@
             }
             else{
                 echo $conn->error;
-                // echo "<script> alert('User not registered!');
-                // </script>";
+                echo "<script> alert('User not registered!');
+                </script>";
         
             }
         }
@@ -63,11 +65,13 @@
         $email=$_POST['d_email'];
         $gender=$_POST['d_gender'];
         $speciality=$_POST['d_speciality'];
+        $city = $_POST['city'];
+        $pincode = $_POST['pincode'];
         $password=$_POST['d_pass'];
         $con_password=$_POST['d_cpass'];
 
         if($password==$con_password && strlen($password)>8){
-            $mysql="INSERT INTO doctors values('{$fname}','{$lname}','{$email}','{$contact}', '{$speciality}','{$gender}','{$password}')";
+            $mysql="INSERT INTO doctors values('{$fname}','{$lname}','{$email}','{$contact}', '{$speciality}','{$gender}','{$city}','{$pincode}','{$password}')";
             $result=mysqli_query($conn,$mysql);
 
             
@@ -127,7 +131,7 @@
                                         <input type="number" class="form-control" name="aadhaar"placeholder="Aadhar Number *" value="" required/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="city"placeholder="City *" value="" required/>
+                                        <input type="text" class="form-control" name="city" placeholder="City *" value="" required/>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" name="pass"placeholder="Password *" value="" required/>

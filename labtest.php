@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/maicons.css">
     <link rel="stylesheet" href="css/lang.css">
-    <link rel="stylesheet" href="css/finddoc.css">
     <!-- Font Awsome -->
     <script src="https://kit.fontawesome.com/47d85d73c6.js" crossorigin="anonymous"></script>
     <!-- Icon -->
@@ -30,8 +29,8 @@
 </head>
 <body>
     <!--------------------------------------- Header ---------------------------------->
-
-    <?php
+    
+<?php
 session_start();
 include 'config.php';
 // error_reporting(E_ALL ^ E_WARNING);
@@ -68,19 +67,19 @@ $user_details = mysqli_fetch_array($res);
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link hover-underline-animation" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="videoconsult.php">Video Consult</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active hover-underline-animation" href="finddoctor.php">Find Doctor</a>
+                            <a class="nav-link hover-underline-animation" href="finddoctor.php">Find Doctor</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="pharmacy.php">Pharmacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" href="labtest.php">Lab Test</a>
+                            <a class="nav-link active hover-underline-animation" href="labtest.php">Lab Test</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
@@ -106,7 +105,8 @@ $user_details = mysqli_fetch_array($res);
             </div>
 
         </nav>
-        
+        <br>
+          <div id="google_translate_element" class="lang_trans"></div>
     </header>
     <?php
 // echo $_SESSION['admin'];
@@ -124,102 +124,8 @@ else{
   </script>";
 
  }
- ?>
-   
-
-
-
-<!------------------------------- Header End-------------------------------------------- -->
-
-    
-<!----------------------------------------- Features ---------------------------------------->
-
-            <form action="finddoctor.php" method="post">
-              <section class="bg">  
-              <br>
-          <div id="google_translate_element" class="lang_trans"></div>
-                  <div id="google_translate_element" class="lang_trans"></div>
-                  <select class="form-select" name="speciality" aria-label="Default select example" required>
-                    <option selected disabled>Select Speciality</option>
-                    <option value="General">General Physician</option>
-                    <option value="dentist">Dentist</option>
-                    <option value="orthodontist">Orthodontist</option>
-                    <option value="gynaecologist">Gynaecologist</option>
-                    <option value="ent specialist">ENT Specialist</option>
-                    <option value="pysiotherapist">Pysiotherapist</option>
-                    <option value="eye specialist">Eye Specialist</option>
-                    <option value="dermatologist">Dermatologist</option>
-                  </select>
-                <div class="row form-group">
-                    <div class="col">
-                        <input type="text" name="city" class="form-control" placeholder="Enter City" required>
-                    </div>
-                    <div class="col">
-                        <input type="text" name="pincode" class="form-control" placeholder="Enter Pincode" required>
-                    </div>
-                    <br>
-                  </div>
-                  <div class="form-group">
-                    <button class="btn btn-s" name="submit">Search</button>
-                  </div>
-            </form>
-        </div>
-    </section>
-
-    
-
-
-    <!-- Section for Details -->
-<section class="hidee" id="tbl">
-  <table class="table table-hover table-bordered" style="border-color:black;">
-            <thead >
-                <tr>
-                    <!-- <th class="text-center">Doctor Id</th> -->
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Contact</th>
-                    <th class="text-center">Gender</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php 
-             
-              if(isset($_POST['submit'])){
-                $speciality=$_POST['speciality'];
-                $city=$_POST['city'];
-                $pincode=$_POST['pincode'];
-                $s =" select * from doctors where speciality = '$speciality' && pincode = '$pincode'";
-            
-                $query =mysqli_query($conn, $s);
-                $num = mysqli_num_rows($query);
-
-                if($num >= 1){
-                  echo "<script>
-                  // document.getElementById('tbl').classList.replace('show','hidee');
-                  document.getElementById('tbl').classList.replace('hidee','show');
-                  </script>";
-                }
-
-                while($rows = mysqli_fetch_assoc($query))
-                {
-            ?>
-                <tr>
-                    <td class="py-2" ><?php echo $rows['fname'] . ' ' . $rows['lname']; ?></td>
-                    <td class="py-2" ><?php echo $rows['phone']; ?></td>
-                    <td class="py-2" ><?php echo $rows['gender']; ?> </td>
-                    <td class="py-2" >
-                      <button class="btn btn-prime">
-                        Book Appointment
-                      </button>
-                    </td>
-                </tr>
-
-            <?php }
-            } ?>
-            </tbody>
-        </table>
-</section>
-  <!-- -----------------------------Footer----------------------------------->
+ ?> 
+  
     <footer class="page-footer">
       <div class="container">
         <div class="row px-md-3">
@@ -277,4 +183,8 @@ else{
 </body>
 </html>
 
+
+
+
   
+    

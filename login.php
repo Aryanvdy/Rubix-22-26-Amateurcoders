@@ -93,7 +93,7 @@
 								</div>
 								<div class="form-group">
 									<label for="password">Password
-										<a href="forgot.html" class="float-right">
+										<a href="forgot.php" class="float-right">
 											Forgot Password?
 										</a>
 									</label>

@@ -16,7 +16,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/maicons.css">
+    <link rel="stylesheet" href="css/available_doc.css">
     <!-- Font Awsome -->
     <script src="https://kit.fontawesome.com/47d85d73c6.js" crossorigin="anonymous"></script>
     <!-- Icon -->
@@ -25,9 +25,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <!--------------------------------------- Header ---------------------------------->
+
+<?php include 'config.php';?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -43,7 +45,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link hover-underline-animation" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active hover-underline-animation" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="videoconsult.php">Video Consult</a>
@@ -57,47 +59,67 @@
                         <li class="nav-item">
                             <a class="nav-link hover-underline-animation" href="labtest.php">Lab Test</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link active" href="login.php">Login/Signup</a>
-                        </li> -->
                         <li class="nav-item">
-                            <a class="btn btn-prime btn-sm" href="login.php">Login / Register</a>
-                          </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: none;">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                          </li>
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                    </ul>
+                          <a class="show btn btn-prime" href="login.php" id="login">LOGIN/Register</a>
+                        </li>
+                      <li class="nav-item">
+                        <li class="nav-item dropdown hidee" id="logout">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $user_details['fname'] ?>
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Calculate BMI</a></li>
+                            <form action="index.php" method="post">
+                              <input class="dropdown-item" type="submit" id="log-out" name="logout" value="Logout">
+                            </form>
+                          </ul>
+                        </li>
+                      </li>
+                </ul>
                 </div>
             </div>
-            <script type="text/javascript">
-                function googleTranslateElementInit() {
-                  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-                }
-            </script>
+
         </nav>
+        <br>
+          <div id="google_translate_element" class="lang_trans"></div>
     </header>
 
 
 
-    Dp
-    Name 
-    Specialization
-    City
-    Gender
-    
+    <h1>Availabe Doctors</h1>
+    <div>
+        <table class="table table-hover" style="border-color:black;">
+            <thead >
+                <tr>
+                    <!-- <th class="text-center">Doctor Id</th> -->
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Speciality</th>
+                    <th class="text-center">City</th>
+                    <th class="text-center">Contact</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php 
+                $sql ="select * from doctors";
+                $query =mysqli_query($conn, $sql);
+                while($rows = mysqli_fetch_assoc($query))
+                {
+            ?>
+                <tr>
+                    <td class="py-2" ><?php echo $rows['fname']; ?></td>
+                    <td class="py-2" ><?php echo $rows['speciality']; ?></td>
+                    <td class="py-2" ><?php echo $rows['city']; ?> </td>
+                    <td class="py-2" ><?php echo $rows['phone']; ?> </td>
+                </tr>
+
+            <?php } ?>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

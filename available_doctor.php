@@ -29,6 +29,7 @@
 
 </head>
 <body>
+<!------------------------------------- Header Start---------------------->
     
 <?php
 session_start();
@@ -41,6 +42,9 @@ if(isset($_POST['logout'])){
 }
 
 
+
+
+
 $user_ = $_SESSION['email'];
 $sql = "SELECT * FROM patients where email='$user_'";
 $res = mysqli_query($conn,$sql);
@@ -49,23 +53,6 @@ $user_details = mysqli_fetch_array($res);
 // </script>";
 
 ?>
- <?php
-// echo $_SESSION['admin'];
-
-        if($_SESSION['login']=="true"){
-        echo "<script>
-        document.getElementById('login').classList.replace('show','hidee');
-        document.getElementById('logout').classList.replace('hidee','show');
-        </script>";
-        }
-        else{
-        echo "<script>
-        // document.getElementById('login').innerHTML = 'HI';
-        
-        </script>";
-
-        }
- ?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -122,6 +109,25 @@ $user_details = mysqli_fetch_array($res);
         <br>
           <div id="google_translate_element" class="lang_trans"></div>
     </header>
+    <?php
+// echo $_SESSION['admin'];
+
+if($_SESSION['login']=="true"){
+  echo "<script>
+  document.getElementById('login').classList.replace('show','hidee');
+  document.getElementById('logout').classList.replace('hidee','show');
+  </script>";
+}
+else{
+  echo "<script>
+  // document.getElementById('login').innerHTML = 'HI';
+  
+  </script>";
+
+ }
+ ?>
+   
+<!-------------------------------- Header end--------------------------------------->
 
 <!------------------------------------ Body---------------------------->
     <section>

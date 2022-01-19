@@ -131,7 +131,9 @@ else{
 
 <!------------------------------- Header End-------------------------------------------- -->
 <?php
-    $em=$_GET['email'];
+    
+    // $em=$_GET['email'];
+    $em = 'av@gmail.com';
     $sql = "SELECT * FROM  doctors where email='$em'";
     $result=mysqli_query($conn,$sql);
     
@@ -140,14 +142,17 @@ else{
         echo "Error : ".$sql."<br>".mysqli_error($conn);
     }
     $rows=mysqli_fetch_assoc($result);
-    $n = $rows['fname'];
-    echo "<script>
-          alert('$n');  
-      </script>";
+    $n = $rows['email'];
+
+
+      echo "<script>
+            alert('$n');  
+            alert('$em');
+        </script>";
 ?>
 
 <section>
-      <h1>Doctor Name <?php  echo $rows['fname'].' '.$rows['lname']; ?></h1>
+      <h1>Doctor Name <?php  echo $rows['email'].' '.$rows['lname']; ?></h1>
       <h2>Doctor Info</h2>
       <div class="container-fluid buttonss">
 
